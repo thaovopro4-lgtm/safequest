@@ -1,0 +1,3481 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SafeQuest - Play. Learn. Stay Safe.</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  background:#fffaf0;
+  color:#25444a;
+  line-height:1.5;
+}
+
+button,a{
+  font-family:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+nav{
+  position:sticky;
+  top:0;
+  z-index:100;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 6%;
+  background:rgba(255,255,255,.97);
+  border-bottom:2px solid #d8edf9;
+  box-shadow:0 5px 20px rgba(45,120,170,.08);
+}
+
+.logo{
+  font-size:30px;
+  font-weight:900;
+  color:#258ed5;
+}
+
+.logo span{
+  color:#f2ad23;
+}
+
+.menu{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.menu a{
+  color:#164d7a;
+  text-decoration:none;
+  font-weight:900;
+  font-size:13px;
+}
+
+.menu a:hover{
+  color:#f2ad23;
+}
+
+.btn{
+  display:inline-block;
+  background:#ffc63d;
+  color:#164d7a;
+  padding:13px 22px;
+  border:0;
+  border-radius:18px;
+  text-decoration:none;
+  font-weight:900;
+  box-shadow:0 5px 0 #e2a928;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+.hero{
+  max-width:1500px;
+  margin:auto;
+  min-height:680px;
+  padding:65px 6%;
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:35px;
+  align-items:center;
+  background:linear-gradient(
+    135deg,
+    #f9fdff 0%,
+    #e8f7ff 60%,
+    #d9f2ff 100%
+  );
+}
+
+.badge{
+  display:inline-block;
+  background:#dff2ff;
+  color:#278ed8;
+  padding:9px 15px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:12px;
+}
+
+.hero h1{
+  font-size:clamp(44px,5.5vw,72px);
+  line-height:.96;
+  letter-spacing:-3px;
+  margin:18px 0;
+  color:#2587c7;
+}
+
+.hero h1 span{
+  color:#f2ad23;
+}
+
+.hero p{
+  max-width:600px;
+  font-size:19px;
+  color:#638096;
+  line-height:1.7;
+}
+
+.hero-card{
+  min-height:540px;
+  border-radius:55px;
+  background:
+    linear-gradient(
+      180deg,
+      #d8f2ff 0%,
+      #c5e9ff 60%,
+      #b9e4cf 60%,
+      #b3dfca 100%
+    );
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 25px 55px rgba(47,130,183,.18);
+}
+
+.phone{
+  width:275px;
+  background:white;
+  border:7px solid #173f5b;
+  border-radius:34px;
+  padding:18px;
+  box-shadow:0 25px 40px rgba(21,71,104,.25);
+  transform:rotate(-3deg);
+  z-index:2;
+}
+
+.phone-top{
+  font-weight:900;
+  font-size:19px;
+  text-align:center;
+  color:#278ed8;
+}
+
+.shield{
+  font-size:62px;
+  text-align:center;
+  margin:10px;
+}
+
+.quest{
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  border:0;
+  border-radius:15px;
+  background:#e5f7d9;
+  font-weight:800;
+  text-align:left;
+}
+
+.quest:nth-of-type(2){
+  background:#ffe7a9;
+}
+
+.quest:nth-of-type(3){
+  background:#ded9ff;
+}
+
+.quest:nth-of-type(4){
+  background:#ffd8d0;
+}
+
+.quest span{
+  float:right;
+}
+
+.mascot{
+  position:absolute;
+  right:5%;
+  bottom:10px;
+  font-size:130px;
+}
+
+section{
+  max-width:1400px;
+  margin:auto;
+  padding:80px 7%;
+}
+
+.section-title{
+  text-align:center;
+  font-size:38px;
+  color:#173b45;
+  margin:0 0 10px;
+}
+
+.section-sub{
+  text-align:center;
+  max-width:720px;
+  margin:0 auto 40px;
+  color:#657d80;
+}
+
+.grid3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+
+.card{
+  background:#fff;
+  padding:30px;
+  border:2px solid #f0e6cf;
+  border-radius:26px;
+  box-shadow:0 8px 25px rgba(48,76,70,.07);
+  transition:.25s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 18px 35px rgba(48,76,70,.12);
+}
+
+.icon{
+  font-size:42px;
+}
+
+.card h3{
+  color:#173b45;
+  margin:10px 0 6px;
+}
+
+.card p{
+  color:#657d80;
+}
+
+.topics{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+
+.topic{
+  border:0;
+  padding:28px;
+  border-radius:26px;
+  text-align:center;
+  transition:.2s;
+}
+
+.topic:hover{
+  transform:translateY(-6px);
+}
+
+.topic:nth-child(1){
+  background:#d9f3d1;
+}
+
+.topic:nth-child(2){
+  background:#ffe8a8;
+}
+
+.topic:nth-child(3){
+  background:#ded9ff;
+}
+
+.topic:nth-child(4){
+  background:#ffd8d0;
+}
+
+.topic-icon{
+  font-size:52px;
+}
+
+.flow{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.step{
+  min-width:180px;
+  background:white;
+  border:2px solid #f0e6cf;
+  border-radius:22px;
+  padding:22px;
+  text-align:center;
+}
+
+.arrow{
+  font-size:26px;
+  color:#ef941d;
+  font-weight:900;
+}
+
+.level-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  max-width:900px;
+  margin:auto;
+}
+
+.level-card{
+  background:white;
+  padding:28px;
+  border:3px solid #7bcf70;
+  border-radius:26px;
+  text-align:center;
+  box-shadow:0 8px 25px rgba(48,76,70,.08);
+}
+
+.level-card.locked{
+  opacity:.55;
+  filter:grayscale(.2);
+}
+
+.level-card h3{
+  color:#173b45;
+}
+
+.quiz-box{
+  max-width:760px;
+  margin:auto;
+  background:white;
+  border:2px solid #f0e6cf;
+  border-radius:30px;
+  padding:34px;
+  box-shadow:0 18px 40px rgba(48,76,70,.1);
+}
+
+.quiz-status{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:14px 0;
+  padding:12px;
+  border-radius:16px;
+  background:#f7f8ef;
+  font-weight:900;
+}
+
+.progress{
+  height:10px;
+  background:#e7e7e7;
+  border-radius:99px;
+  overflow:hidden;
+}
+
+.progress-fill{
+  height:100%;
+  width:0;
+  background:#39bfd0;
+  transition:.3s;
+}
+
+.scene{
+  height:210px;
+  margin:20px 0;
+  border-radius:26px;
+  background:
+    linear-gradient(
+      180deg,
+      #dff6ff 0 62%,
+      #cfe9ae 62%
+    );
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:75px;
+  border:3px solid #d5eee5;
+}
+
+.answers button{
+  width:100%;
+  display:block;
+  text-align:left;
+  padding:15px;
+  margin:9px 0;
+  border:2px solid #e8e8e3;
+  border-radius:15px;
+  background:#fafaf7;
+  font-weight:800;
+  color:#25444a;
+}
+
+.answers button:hover{
+  border-color:#39bfd0;
+  background:#efffff;
+}
+
+.answers button:disabled{
+  opacity:.7;
+  cursor:not-allowed;
+}
+
+.result{
+  min-height:30px;
+  margin-top:15px;
+  font-weight:900;
+}
+
+.lobby{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:22px;
+}
+
+.lobby-card{
+  background:white;
+  border:2px solid #f0e6cf;
+  border-radius:28px;
+  padding:25px;
+  box-shadow:0 10px 25px rgba(48,76,70,.08);
+}
+
+.friend{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:12px;
+  margin:10px 0;
+  border-radius:18px;
+  background:#f7f8ef;
+}
+
+.small-btn{
+  border:0;
+  border-radius:14px;
+  padding:9px 13px;
+  background:#d9f3d1;
+  font-weight:900;
+}
+
+.house{
+  font-size:80px;
+  text-align:center;
+  padding:20px;
+  border-radius:25px;
+  background:#dff3ff;
+}
+
+.reward-btn{
+  margin:5px;
+  border:0;
+  border-radius:16px;
+  padding:11px 15px;
+  background:#ffe8a8;
+  font-weight:900;
+}
+
+.city-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.city{
+  min-height:180px;
+  border-radius:25px;
+  background:
+    linear-gradient(
+      180deg,
+      #dff5ff 0 58%,
+      #cce9a8 58%
+    );
+  padding:15px;
+  text-align:center;
+}
+
+.city-house{
+  font-size:55px;
+  min-height:70px;
+}
+
+.shield-bar{
+  height:10px;
+  background:#e7e7e7;
+  border-radius:99px;
+  overflow:hidden;
+  margin:8px 0;
+}
+
+.shield-fill{
+  height:100%;
+  background:#7bcf70;
+  border-radius:99px;
+}
+
+.inventory{
+  display:flex;
+  gap:8px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:15px;
+}
+
+.inventory span{
+  background:#f7f2df;
+  padding:7px 12px;
+  border-radius:12px;
+  font-weight:800;
+}
+
+.dashboard-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  max-width:850px;
+  margin:auto;
+}
+
+.stat{
+  text-align:center;
+}
+
+.badges{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.badge-item{
+  background:#fff0bd;
+  padding:10px 14px;
+  border-radius:15px;
+  font-weight:900;
+}
+
+.price{
+  max-width:520px;
+  margin:auto;
+  background:white;
+  border:3px solid #ffc83d;
+  border-radius:30px;
+  padding:35px;
+  text-align:center;
+}
+
+.price-number{
+  font-size:44px;
+  font-weight:900;
+  color:#ef941d;
+}
+
+.cta{
+  background:#e5f4dd;
+  border:2px solid #cfe7bf;
+  border-radius:35px;
+  padding:55px;
+  text-align:center;
+}
+
+.cta h2{
+  font-size:40px;
+  color:#173b45;
+}
+
+footer{
+  padding:40px;
+  text-align:center;
+  background:#173b45;
+  color:white;
+}
+
+footer p{
+  color:#c8dadc;
+}
+
+@media(max-width:900px){
+
+  nav{
+    position:relative;
+  }
+
+  .menu{
+    display:none;
+  }
+
+  .hero{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .hero p{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .grid3,
+  .topics,
+  .level-grid,
+  .dashboard-grid,
+  .city-grid,
+  .lobby{
+    grid-template-columns:1fr;
+  }
+
+  .flow{
+    flex-direction:column;
+  }
+
+  .arrow{
+    transform:rotate(90deg);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+  <div class="logo">
+    🛡️ Safe<span>Quest</span>
+  </div>
+
+  <div class="menu">
+
+    <a href="#play">🎮 Chơi</a>
+
+    <a href="#about">📖 Tìm hiểu</a>
+
+    <a href="#guide">🧭 Hướng dẫn</a>
+
+    <a href="#friends">👥 Bạn bè</a>
+
+    <a href="#parent">👨‍👩‍👧 Phụ huynh</a>
+
+    <a href="#pricing">💎 Giá</a>
+
+    <button
+      class="btn"
+      style="padding:9px 14px"
+      onclick="showLogin()"
+    >
+      👤 Tài khoản
+    </button>
+
+  </div>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<header class="hero">
+
+  <div>
+
+    <span class="badge">
+      🛡️ HỌC KỸ NĂNG AN TOÀN QUA TRÒ CHƠI
+    </span>
+
+    <h1>
+      Khám phá thế giới
+      <br>
+      <span>an toàn</span>
+      cùng SafeQuest!
+    </h1>
+
+    <p>
+      SafeQuest giúp trẻ học cách nhận biết và xử lý
+      các tình huống nguy hiểm thông qua trò chơi,
+      câu hỏi tương tác và những thử thách vui nhộn.
+    </p>
+
+    <div
+      style="
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:22px;
+      "
+    >
+
+      <a class="btn" href="#play">
+        🚀 Bắt đầu ngay
+      </a>
+
+      <a
+        class="btn"
+        href="#about"
+        style="
+        background:white;
+        box-shadow:0 5px 0 #d6e7f0
+        "
+      >
+        📖 Tìm hiểu app
+      </a>
+
+    </div>
+
+    <div
+      style="
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:28px;
+      max-width:570px;
+      "
+    >
+
+      <div class="card">
+
+        <b>📍 Cảnh báo an toàn</b>
+
+        <br>
+
+        <small>
+          Học cách nhận biết rủi ro.
+        </small>
+
+      </div>
+
+      <div class="card">
+
+        <b>🛡️ Kỹ năng thực tế</b>
+
+        <br>
+
+        <small>
+          Học qua tình huống gần gũi.
+        </small>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="hero-card">
+
+    <div class="phone">
+
+      <div class="phone-top">
+        SafeQuest 🛡️
+      </div>
+
+      <div class="shield">
+        🛡️
+      </div>
+
+      <div
+        style="
+        font-weight:800;
+        text-align:center;
+        "
+      >
+        Chọn chủ đề
+      </div>
+
+      <button
+        class="quest"
+        onclick="chooseTopic('traffic')"
+      >
+        🚦 Giao thông
+        <span>→</span>
+      </button>
+
+      <button
+        class="quest"
+        onclick="chooseTopic('home')"
+      >
+        🏠 An toàn trong nhà
+        <span>→</span>
+      </button>
+
+      <button
+        class="quest"
+        onclick="chooseTopic('internet')"
+      >
+        💻 Internet an toàn
+        <span>→</span>
+      </button>
+
+      <button
+        class="quest"
+        onclick="chooseTopic('stranger')"
+      >
+        👤 Người lạ
+        <span>→</span>
+      </button>
+
+    </div>
+
+    <div class="mascot">
+      🐧
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section id="about">
+
+  <h2 class="section-title">
+    Vì sao nên chọn SafeQuest?
+  </h2>
+
+  <p class="section-sub">
+    Học kỹ năng an toàn bằng cách chơi,
+    thực hành tình huống và ghi nhớ những lựa chọn đúng.
+  </p>
+
+  <div class="grid3">
+
+    <div class="card">
+
+      <div class="icon">🎮</div>
+
+      <h3>
+        Học qua trò chơi
+      </h3>
+
+      <p>
+        Biến kiến thức an toàn thành những
+        thử thách ngắn, dễ hiểu và thú vị.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">❤️</div>
+
+      <h3>
+        Kỹ năng thực tế
+      </h3>
+
+      <p>
+        Trẻ được luyện cách xử lý những
+        tình huống có thể gặp trong đời sống.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">🛡️</div>
+
+      <h3>
+        Thiết kế thân thiện
+      </h3>
+
+      <p>
+        Nội dung trực quan, gần gũi
+        và dễ ghi nhớ.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= GUIDE ================= -->
+
+<section id="guide">
+
+  <h2 class="section-title">
+    SafeQuest hoạt động thế nào?
+  </h2>
+
+  <p class="section-sub">
+    Một vòng chơi đơn giản giúp trẻ quan sát,
+    suy nghĩ và ghi nhớ.
+  </p>
+
+  <div class="flow">
+
+    <div class="step">
+      <div class="icon">🎯</div>
+      <b>1. Tình huống</b>
+      <br>
+      <small>Xem tình huống thực tế</small>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="step">
+      <div class="icon">🤔</div>
+      <b>2. Lựa chọn</b>
+      <br>
+      <small>Chọn cách xử lý</small>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="step">
+      <div class="icon">💡</div>
+      <b>3. Ghi nhớ</b>
+      <br>
+      <small>Hiểu vì sao đúng</small>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="step">
+      <div class="icon">🏆</div>
+      <b>4. Phần thưởng</b>
+      <br>
+      <small>Nhận điểm & huy hiệu</small>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section>
+
+  <h2 class="section-title">
+    Tính năng nổi bật
+  </h2>
+
+  <p class="section-sub">
+    Mọi thứ được thiết kế xoay quanh trải nghiệm
+    học an toàn của trẻ.
+  </p>
+
+  <div class="grid3">
+
+    <div class="card">
+
+      <div class="icon">🎮</div>
+
+      <h3>
+        Tình huống tương tác
+      </h3>
+
+      <p>
+        Trẻ quan sát tình huống và
+        chọn phương án phù hợp.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">🏆</div>
+
+      <h3>
+        Điểm & huy hiệu
+      </h3>
+
+      <p>
+        Hoàn thành Quest để nhận điểm
+        và mở khóa huy hiệu.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">👨‍👩‍👧</div>
+
+      <h3>
+        Parent Dashboard
+      </h3>
+
+      <p>
+        Phụ huynh có thể xem tiến độ
+        học tập của trẻ.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= TOPICS ================= -->
+
+<section>
+
+  <h2 class="section-title">
+    Chọn chủ đề
+  </h2>
+
+  <p class="section-sub">
+    Mỗi chủ đề có 3 câu hỏi.
+  </p>
+
+  <div class="topics">
+
+    <button
+      class="topic"
+      onclick="chooseTopic('traffic')"
+    >
+
+      <div class="topic-icon">
+        🚦
+      </div>
+
+      <h3>
+        Giao thông
+      </h3>
+
+      <p>
+        Qua đường và di chuyển an toàn.
+      </p>
+
+    </button>
+
+
+    <button
+      class="topic"
+      onclick="chooseTopic('home')"
+    >
+
+      <div class="topic-icon">
+        🏠
+      </div>
+
+      <h3>
+        An toàn trong nhà
+      </h3>
+
+      <p>
+        Nhận biết các tình huống nguy hiểm.
+      </p>
+
+    </button>
+
+
+    <button
+      class="topic"
+      onclick="chooseTopic('internet')"
+    >
+
+      <div class="topic-icon">
+        💻
+      </div>
+
+      <h3>
+        Internet an toàn
+      </h3>
+
+      <p>
+        Nhận biết thông tin và tin nhắn đáng ngờ.
+      </p>
+
+    </button>
+
+
+    <button
+      class="topic"
+      onclick="chooseTopic('stranger')"
+    >
+
+      <div class="topic-icon">
+        👤
+      </div>
+
+      <h3>
+        Người lạ
+      </h3>
+
+      <p>
+        Từ chối và tìm người lớn đáng tin cậy.
+      </p>
+
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ================= LEVEL ================= -->
+
+<section
+  id="play"
+  style="background:#fff7df"
+>
+
+  <h2 class="section-title">
+    🗺️ Hành trình SafeQuest
+  </h2>
+
+  <p class="section-sub">
+    Hoàn thành từng Level để mở khóa Level tiếp theo.
+  </p>
+
+  <div class="level-grid">
+
+    <button
+      id="level1Btn"
+      class="level-card"
+      onclick="chooseLevel(1)"
+    >
+
+      <div class="icon">
+        ⭐
+      </div>
+
+      <h3>
+        LEVEL 1
+      </h3>
+
+      <p>
+        Khởi động
+      </p>
+
+      <b>
+        ▶ CHƠI NGAY
+      </b>
+
+    </button>
+
+
+    <button
+      id="level2Btn"
+      class="level-card locked"
+      onclick="chooseLevel(2)"
+      disabled
+    >
+
+      <div class="icon">
+        ⭐⭐
+      </div>
+
+      <h3>
+        LEVEL 2
+      </h3>
+
+      <p>
+        Thử thách
+      </p>
+
+      <b>
+        🔒 HOÀN THÀNH LEVEL 1
+      </b>
+
+    </button>
+
+
+    <button
+      id="level3Btn"
+      class="level-card locked"
+      onclick="chooseLevel(3)"
+      disabled
+    >
+
+      <div class="icon">
+        ⭐⭐⭐
+      </div>
+
+      <h3>
+        LEVEL 3
+      </h3>
+
+      <p>
+        Siêu an toàn
+      </p>
+
+      <b>
+        🔒 HOÀN THÀNH LEVEL 2
+      </b>
+
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ================= QUIZ ================= -->
+
+<section
+  id="quiz"
+  style="background:#eaf6e4"
+>
+
+  <h2 class="section-title">
+    🎮 Safety Quest
+  </h2>
+
+  <p class="section-sub">
+    Trả lời câu hỏi để tích điểm và mở khóa Level.
+  </p>
+
+  <div class="quiz-box">
+
+    <span
+      class="badge"
+      id="quizBadge"
+    >
+      GIAO THÔNG • LEVEL 01
+    </span>
+
+
+    <div class="quiz-status">
+
+      <span id="questProgress">
+        Câu 1 / 3
+      </span>
+
+      <span id="questScore">
+        ⭐ 0 điểm
+      </span>
+
+      <span id="questHearts">
+        ❤️❤️❤️
+      </span>
+
+    </div>
+
+
+    <div class="progress">
+
+      <div
+        class="progress-fill"
+        id="questProgressFill"
+      ></div>
+
+    </div>
+
+
+    <div
+      class="scene"
+      id="questionScene"
+    >
+      🧒 🚦 🛣️
+    </div>
+
+
+    <h3 id="question">
+      Bạn nhỏ muốn qua đường.
+      Theo em, bạn nên làm gì?
+    </h3>
+
+
+    <div
+      style="
+      text-align:center;
+      margin:18px 0;
+      "
+    >
+
+      <button
+        class="btn"
+        onclick="speakQuestion()"
+      >
+        🔊 Bấm để nghe câu hỏi
+      </button>
+
+    </div>
+
+
+    <div class="answers">
+
+      <button
+        id="answerA"
+        onclick="answer(0)"
+      >
+        A. Chạy qua ngay.
+      </button>
+
+      <button
+        id="answerB"
+        onclick="answer(1)"
+      >
+        B. Quan sát hai bên và qua tại nơi an toàn.
+      </button>
+
+      <button
+        id="answerC"
+        onclick="answer(2)"
+      >
+        C. Đi theo một chiếc xe.
+      </button>
+
+    </div>
+
+
+    <div
+      id="result"
+      class="result"
+    ></div>
+
+
+    <button
+      id="nextQuestionBtn"
+      class="btn"
+      style="display:none"
+      onclick="nextQuestion()"
+    >
+      ➡️ Câu tiếp theo
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ================= DASHBOARD ================= -->
+
+<section
+  id="dashboard"
+  style="background:#f7fbff"
+>
+
+  <h2 class="section-title">
+    👤 Tài khoản SafeQuest
+  </h2>
+
+  <p class="section-sub">
+    Theo dõi điểm, Level và huy hiệu của bạn.
+  </p>
+
+
+  <div class="dashboard-grid">
+
+    <div class="card stat">
+
+      <div class="icon">
+        🧒
+      </div>
+
+      <h3 id="dashName">
+        Bạn
+      </h3>
+
+      <p id="dashId">
+        SafeQuest ID: SQ-DEMO
+      </p>
+
+    </div>
+
+
+    <div class="card stat">
+
+      <div class="icon">
+        ⭐
+      </div>
+
+      <h3 id="dashPoints">
+        150
+      </h3>
+
+      <p>
+        Điểm SafeQuest
+      </p>
+
+    </div>
+
+
+    <div class="card stat">
+
+      <div class="icon">
+        🏆
+      </div>
+
+      <h3 id="dashLevel">
+        Level 1
+      </h3>
+
+      <p>
+        Cấp độ
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="card"
+    style="
+    max-width:850px;
+    margin:22px auto;
+    text-align:center;
+    "
+  >
+
+    <h3>
+      🏅 Huy hiệu
+    </h3>
+
+    <div
+      id="badgeList"
+      class="badges"
+    ></div>
+
+
+    <h3>
+      🗺️ Hành trình
+    </h3>
+
+    <p id="dashStatus">
+      Hãy hoàn thành Quest để mở khóa Level tiếp theo.
+    </p>
+
+
+    <a
+      class="btn"
+      href="#play"
+    >
+      🎮 Tiếp tục chơi
+    </a>
+
+
+    <button
+      class="btn"
+      onclick="logout()"
+      style="
+      margin-left:8px;
+      background:#ffd8d0;
+      box-shadow:0 5px 0 #e8aaa0;
+      "
+    >
+      🚪 Đăng xuất
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ================= FRIENDS ================= -->
+
+<section
+  id="friends"
+  style="background:#eef8ff"
+>
+
+  <h2 class="section-title">
+    👥 Sảnh SafeQuest
+  </h2>
+
+  <p class="section-sub">
+    Kết nối bằng SafeQuest ID và dùng các lời nhắn có sẵn.
+  </p>
+
+
+  <div class="lobby">
+
+    <div class="lobby-card">
+
+      <h2>
+        🪪 SafeQuest ID của bạn
+      </h2>
+
+      <div
+        style="
+        background:#e5f7d9;
+        padding:20px;
+        border-radius:20px;
+        text-align:center;
+        "
+      >
+
+        <div
+          id="mySafeQuestId"
+          style="
+          font-size:25px;
+          font-weight:900;
+          "
+        >
+          SQ-DEMO
+        </div>
+
+        <br>
+
+        <button
+          class="small-btn"
+          onclick="copySafeQuestId()"
+        >
+          📋 Sao chép ID
+        </button>
+
+      </div>
+
+
+      <h3>
+        ➕ Gửi lời mời
+      </h3>
+
+      <input
+        id="friendIdInput"
+        placeholder="Nhập SafeQuest ID"
+        style="
+        width:100%;
+        padding:13px;
+        border:2px solid #dce8eb;
+        border-radius:14px;
+        "
+      >
+
+      <select
+        id="friendMessage"
+        style="
+        width:100%;
+        padding:13px;
+        margin-top:10px;
+        border:2px solid #dce8eb;
+        border-radius:14px;
+        "
+      >
+
+        <option>
+          🎮 Chơi Quest cùng mình!
+        </option>
+
+        <option>
+          🎉 Chúc mừng bạn!
+        </option>
+
+        <option>
+          👋 Xin chào!
+        </option>
+
+      </select>
+
+      <button
+        class="btn"
+        style="margin-top:10px"
+        onclick="sendFriendRequest()"
+      >
+        ➕ Gửi lời mời
+      </button>
+
+      <p id="friendMessageBox"></p>
+
+    </div>
+
+
+    <div class="lobby-card">
+
+      <h2>
+        👥 Bạn bè demo
+      </h2>
+
+      <div class="friend">
+
+        <span>
+          🧒 Minh
+          <br>
+          ⭐ 120 điểm
+        </span>
+
+        <button
+          class="small-btn"
+          onclick="playWithFriend('Minh')"
+        >
+          🎮 Chơi
+        </button>
+
+      </div>
+
+
+      <div class="friend">
+
+        <span>
+          👧 An
+          <br>
+          ⭐ 95 điểm
+        </span>
+
+        <button
+          class="small-btn"
+          onclick="playWithFriend('An')"
+        >
+          🎮 Chơi
+        </button>
+
+      </div>
+
+
+      <div class="friend">
+
+        <span>
+          🧑 Nam
+          <br>
+          ⭐ 80 điểm
+        </span>
+
+        <button
+          class="small-btn"
+          onclick="playWithFriend('Nam')"
+        >
+          🎮 Chơi
+        </button>
+
+      </div>
+
+
+      <p id="friendList"></p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= CITY ================= -->
+
+<section
+  style="background:#f3fbff"
+>
+
+  <h2 class="section-title">
+    🏘️ Thành phố SafeQuest
+  </h2>
+
+  <p class="section-sub">
+    Dùng điểm để đổi vật phẩm và xây khu nhà của mình.
+  </p>
+
+
+  <div class="lobby">
+
+    <div class="lobby-card">
+
+      <div
+        class="house"
+        id="playerHouse"
+      >
+        🏠
+      </div>
+
+      <h3 style="text-align:center">
+        ⭐
+        <span id="rewardPoints">
+          150
+        </span>
+        điểm
+      </h3>
+
+
+      <div style="text-align:center">
+
+        <button
+          class="reward-btn"
+          onclick="exchangeReward('brick')"
+        >
+          ⭐ 20 → 🧱 Gạch
+        </button>
+
+        <button
+          class="reward-btn"
+          onclick="exchangeReward('gift')"
+        >
+          ⭐ 50 → 🎁 Quà
+        </button>
+
+      </div>
+
+
+      <p
+        id="lobbyMessage"
+        style="
+        text-align:center;
+        font-weight:900;
+        "
+      ></p>
+
+    </div>
+
+
+    <div class="lobby-card">
+
+      <h2>
+        📦 Kho vật phẩm
+      </h2>
+
+      <div class="inventory">
+
+        <span>
+          ⭐ Điểm:
+          <b id="cityPoints">150</b>
+        </span>
+
+        <span>
+          🧱 Gạch:
+          <b id="cityBricks">0</b>
+        </span>
+
+        <span>
+          🎁 Quà:
+          <b id="cityGifts">0</b>
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="lobby-card"
+    style="
+    margin-top:25px;
+    "
+  >
+
+    <h2 style="text-align:center">
+      🏘️ Khu nhà
+    </h2>
+
+    <div class="city-grid">
+
+      <div class="city">
+
+        <b>
+          🧒 Nhà của bạn
+        </b>
+
+        <div
+          class="city-house"
+          id="myCityHouse"
+        >
+          🏠
+        </div>
+
+        🧱
+        <span id="myBricks">
+          0
+        </span>
+        gạch
+
+      </div>
+
+
+      <div class="city">
+
+        <b>
+          🧒 Nhà Minh
+        </b>
+
+        <div class="city-house">
+          🏡
+        </div>
+
+        🧱 8 gạch
+
+        <div class="shield-bar">
+
+          <div
+            class="shield-fill"
+            id="minhShield"
+            style="width:100%"
+          ></div>
+
+        </div>
+
+        🛡️
+        <span id="minhShieldText">
+          100
+        </span>%
+
+      </div>
+
+
+      <div class="city">
+
+        <b>
+          👧 Nhà An
+        </b>
+
+        <div class="city-house">
+          🏡
+        </div>
+
+        🧱 6 gạch
+
+        <div class="shield-bar">
+
+          <div
+            class="shield-fill"
+            id="anShield"
+            style="width:100%"
+          ></div>
+
+        </div>
+
+        🛡️
+        <span id="anShieldText">
+          100
+        </span>%
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="lobby-card"
+    style="
+    margin-top:25px;
+    text-align:center;
+    "
+  >
+
+    <h2>
+      🎁 Thử thách vui
+    </h2>
+
+    <p>
+      Đây chỉ là một mini-game mô phỏng,
+      không ảnh hưởng đến tài khoản thật.
+    </p>
+
+    <button
+      class="reward-btn"
+      onclick="attackHouse('Minh')"
+    >
+      🎁 Thử thách nhà Minh
+    </button>
+
+    <button
+      class="reward-btn"
+      onclick="attackHouse('An')"
+    >
+      🎁 Thử thách nhà An
+    </button>
+
+    <div id="battleMessage"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= PARENT ================= -->
+
+<section
+  id="parent"
+  style="background:#eaf6e4"
+>
+
+  <h2 class="section-title">
+    👨‍👩‍👧 Parent Dashboard
+  </h2>
+
+  <p class="section-sub">
+    Khu vực demo dành cho phụ huynh theo dõi tiến độ.
+  </p>
+
+
+  <div
+    class="card"
+    style="max-width:850px;margin:auto"
+  >
+
+    <div class="grid3">
+
+      <div
+        style="
+        background:#dff3ff;
+        padding:20px;
+        border-radius:20px;
+        text-align:center;
+        "
+      >
+
+        <div class="icon">
+          🎯
+        </div>
+
+        <b id="parentQuests">
+          0
+        </b>
+
+        <br>
+
+        Quest hoàn thành
+
+      </div>
+
+
+      <div
+        style="
+        background:#fff0bd;
+        padding:20px;
+        border-radius:20px;
+        text-align:center;
+        "
+      >
+
+        <div class="icon">
+          ⭐
+        </div>
+
+        <b id="parentPoints">
+          150
+        </b>
+
+        <br>
+
+        Tổng điểm
+
+      </div>
+
+
+      <div
+        style="
+        background:#e3ddff;
+        padding:20px;
+        border-radius:20px;
+        text-align:center;
+        "
+      >
+
+        <div class="icon">
+          🏆
+        </div>
+
+        <b id="parentLevel">
+          Level 1
+        </b>
+
+        <br>
+
+        Cấp độ
+
+      </div>
+
+    </div>
+
+
+    <p
+      style="
+      text-align:center;
+      color:#657d80;
+      "
+    >
+      Đây là dashboard mô phỏng cho prototype SafeQuest.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- ================= RULES ================= -->
+
+<section>
+
+  <h2 class="section-title">
+    📜 Quy định SafeQuest
+  </h2>
+
+  <p class="section-sub">
+    Những nguyên tắc giúp khu vui chơi thân thiện và an toàn.
+  </p>
+
+
+  <div class="grid3">
+
+    <div class="card">
+
+      <div class="icon">
+        🛡️
+      </div>
+
+      <h3>
+        An toàn trước tiên
+      </h3>
+
+      <p>
+        Không chia sẻ địa chỉ,
+        mật khẩu, số điện thoại
+        hoặc thông tin riêng tư.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">
+        🤝
+      </div>
+
+      <h3>
+        Tôn trọng bạn bè
+      </h3>
+
+      <p>
+        Không xúc phạm,
+        bắt nạt hoặc cố tình
+        làm phiền người chơi khác.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="icon">
+        👨‍👩‍👧
+      </div>
+
+      <h3>
+        Người lớn đồng hành
+      </h3>
+
+      <p>
+        Các tính năng kết nối
+        nên có sự đồng hành
+        của phụ huynh.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= PRICING ================= -->
+
+<section
+  id="pricing"
+  style="background:#fff7df"
+>
+
+  <h2 class="section-title">
+    💎 Gói SafeQuest
+  </h2>
+
+  <p class="section-sub">
+    Màn hình giá dành cho prototype.
+  </p>
+
+
+  <div class="price">
+
+    <div style="font-size:55px">
+      🔓
+    </div>
+
+    <h2>
+      SafeQuest Premium
+    </h2>
+
+    <p>
+      Mở khóa toàn bộ hành trình
+      và tính năng Premium.
+    </p>
+
+    <div class="price-number">
+      49.000đ
+      <small style="font-size:16px;color:#657d80">
+        / tháng
+      </small>
+    </div>
+
+    <button
+      class="btn"
+      onclick="subscribe()"
+    >
+      🚀 Mở khóa SafeQuest
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+<section>
+
+  <div class="cta">
+
+    <h2>
+      Cùng con lớn lên an toàn hơn! 💚
+    </h2>
+
+    <p>
+      SafeQuest biến việc học kỹ năng an toàn
+      thành một hành trình vui nhộn.
+    </p>
+
+    <a
+      class="btn"
+      href="#play"
+    >
+      🎮 Bắt đầu Quest
+    </a>
+
+  </div>
+
+</section>
+
+
+<footer>
+
+  <div style="font-size:25px;font-weight:900">
+    🛡️ SafeQuest
+  </div>
+
+  <p>
+    Play. Learn. Stay Safe.
+  </p>
+
+  <p>
+    © 2026 SafeQuest Prototype
+  </p>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   SAFEQUEST DATA
+===================================================== */
+
+const quizData = {
+
+  traffic:[
+    {
+      q:"Bạn nhỏ muốn qua đường. Theo em, bạn nên làm gì?",
+      a:[
+        "A. Chạy qua ngay.",
+        "B. Quan sát hai bên và qua tại nơi an toàn.",
+        "C. Đi theo một chiếc xe."
+      ],
+      correct:1
+    },
+
+    {
+      q:"Đèn giao thông dành cho người đi bộ đang màu đỏ. Em nên làm gì?",
+      a:[
+        "A. Vẫn đi nhanh qua.",
+        "B. Chờ tín hiệu phù hợp rồi qua.",
+        "C. Đi theo người khác mà không quan sát."
+      ],
+      correct:1
+    },
+
+    {
+      q:"Khi đi xe đạp, em nên làm gì?",
+      a:[
+        "A. Đội mũ bảo hiểm đúng cách.",
+        "B. Vừa đi vừa nhìn điện thoại.",
+        "C. Đi thật nhanh qua nơi đông xe."
+      ],
+      correct:0
+    }
+  ],
+
+
+  home:[
+    {
+      q:"Em thấy một ổ điện đang bị hở. Em nên làm gì?",
+      a:[
+        "A. Chạm thử xem có điện không.",
+        "B. Báo ngay cho người lớn đáng tin cậy.",
+        "C. Dùng đồ vật chọc vào ổ điện."
+      ],
+      correct:1
+    },
+
+    {
+      q:"Sàn nhà đang bị ướt. Em nên làm gì?",
+      a:[
+        "A. Chạy qua thật nhanh.",
+        "B. Báo người lớn và tránh khu vực trơn trượt.",
+        "C. Đùa nghịch trên sàn."
+      ],
+      correct:1
+    },
+
+    {
+      q:"Em thấy một chai hóa chất không rõ nhãn. Em nên làm gì?",
+      a:[
+        "A. Tự mở ra xem.",
+        "B. Nếm thử một chút.",
+        "C. Không chạm vào và báo người lớn."
+      ],
+      correct:2
+    }
+  ],
+
+
+  internet:[
+    {
+      q:"Một người lạ trên mạng hỏi địa chỉ nhà của em. Em nên làm gì?",
+      a:[
+        "A. Gửi ngay cho họ.",
+        "B. Hẹn gặp người đó.",
+        "C. Không chia sẻ và báo cho người lớn đáng tin cậy."
+      ],
+      correct:2
+    },
+
+    {
+      q:"Một tin nhắn lạ yêu cầu em gửi mật khẩu. Em nên làm gì?",
+      a:[
+        "A. Gửi ngay.",
+        "B. Không chia sẻ mật khẩu và báo người lớn.",
+        "C. Đăng mật khẩu lên nhóm bạn."
+      ],
+      correct:1
+    },
+
+    {
+      q:"Em nhận được một đường link đáng ngờ. Em nên làm gì?",
+      a:[
+        "A. Bấm ngay.",
+        "B. Gửi cho tất cả bạn bè.",
+        "C. Không bấm và hỏi người lớn đáng tin cậy."
+      ],
+      correct:2
+    }
+  ],
+
+
+  stranger:[
+    {
+      q:"Một người không quen rủ em đi theo họ. Em nên làm gì?",
+      a:[
+        "A. Đi theo họ.",
+        "B. Từ chối và tìm một người lớn đáng tin cậy.",
+        "C. Giữ bí mật với bố mẹ."
+      ],
+      correct:1
+    },
+
+    {
+      q:"Một người lạ đề nghị tặng em món quà để đi cùng họ. Em nên làm gì?",
+      a:[
+        "A. Nhận quà và đi theo.",
+        "B. Từ chối và tìm người lớn đáng tin cậy.",
+        "C. Giấu người lớn."
+      ],
+      correct:1
+    },
+
+    {
+      q:"Nếu cảm thấy không an toàn ở nơi công cộng, em nên làm gì?",
+      a:[
+        "A. Đi theo người lạ.",
+        "B. Tìm nơi an toàn và nhờ người lớn đáng tin cậy giúp đỡ.",
+        "C. Tách khỏi mọi người."
+      ],
+      correct:1
+    }
+  ]
+
+};
+
+
+/* =====================================================
+   QUESTION SCENES
+===================================================== */
+
+const scenes={
+
+  traffic:[
+    "🧒 🚦 🛣️",
+    "🚶‍♀️ 🚦 🔴",
+    "🚲 🪖 🛣️"
+  ],
+
+  home:[
+    "🧒 🔌 ⚡",
+    "💧 🧒 🧹",
+    "🧴 ⚠️ 🧒"
+  ],
+
+  internet:[
+    "🧒 💻 🔒",
+    "📱 🔑 🚫",
+    "💻 🔗 ⚠️"
+  ],
+
+  stranger:[
+    "🧒 🚫 🧑",
+    "🎁 🚫 🧒",
+    "🧒 🏪 🛡️"
+  ]
+
+};
+
+
+/* =====================================================
+   GAME VARIABLES
+===================================================== */
+
+let selectedTopic="traffic";
+
+let selectedLevel=1;
+
+let currentQuestion=0;
+
+let currentCorrect=1;
+
+let questScore=0;
+
+let questHearts=3;
+
+let rewardPoints=150;
+
+let unlockedLevels=1;
+
+let completedQuests=0;
+
+let badges=[];
+
+let bricks=0;
+
+let gifts=0;
+
+let minhShield=100;
+
+let anShield=100;
+
+
+/* =====================================================
+   LOAD DATA
+===================================================== */
+
+const saved=JSON.parse(
+  localStorage.getItem("safequestProgress") || "null"
+);
+
+if(saved){
+
+  rewardPoints=saved.rewardPoints ?? 150;
+
+  unlockedLevels=saved.unlockedLevels ?? 1;
+
+  completedQuests=saved.completedQuests ?? 0;
+
+  badges=saved.badges ?? [];
+
+  bricks=saved.bricks ?? 0;
+
+  gifts=saved.gifts ?? 0;
+
+  minhShield=saved.minhShield ?? 100;
+
+  anShield=saved.anShield ?? 100;
+
+}
+
+
+/* =====================================================
+   SAVE DATA
+===================================================== */
+
+function saveProgress(){
+
+  localStorage.setItem(
+    "safequestProgress",
+    JSON.stringify({
+
+      rewardPoints,
+
+      unlockedLevels,
+
+      completedQuests,
+
+      badges,
+
+      bricks,
+
+      gifts,
+
+      minhShield,
+
+      anShield
+
+    })
+  );
+
+  updateAllUI();
+
+}
+
+
+/* =====================================================
+   UPDATE UI
+===================================================== */
+
+function updateAllUI(){
+
+  updateDashboard();
+
+  updateLevels();
+
+  updateCity();
+
+  updateAccountUI();
+
+}
+
+
+/* =====================================================
+   ACCOUNT
+===================================================== */
+
+function getUser(){
+
+  return JSON.parse(
+    localStorage.getItem("safequestUser") || "null"
+  );
+
+}
+
+
+function generateSafeQuestId(){
+
+  return "SQ-" +
+    Math.random()
+      .toString(36)
+      .substring(2,8)
+      .toUpperCase();
+
+}
+
+
+function showLogin(){
+
+  const current=getUser();
+
+  const name=prompt(
+    "🛡️ SAFEQUEST\n\nNhập tên người chơi:",
+    current?.name || ""
+  );
+
+  if(!name || !name.trim()){
+
+    return;
+
+  }
+
+  const user={
+
+    name:name.trim(),
+
+    id:current?.id || generateSafeQuestId()
+
+  };
+
+  localStorage.setItem(
+    "safequestUser",
+    JSON.stringify(user)
+  );
+
+  alert(
+    "🎉 Tạo tài khoản thành công!\n\n" +
+    "Tên: " + user.name +
+    "\nSafeQuest ID: " + user.id
+  );
+
+  updateAllUI();
+
+  showDashboard();
+
+}
+
+
+function showDashboard(){
+
+  const user=getUser();
+
+  if(!user){
+
+    showLogin();
+
+    return;
+
+  }
+
+  updateAllUI();
+
+  document
+    .getElementById("dashboard")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+}
+
+
+function logout(){
+
+  localStorage.removeItem("safequestUser");
+
+  alert(
+    "👋 Bạn đã đăng xuất khỏi SafeQuest!"
+  );
+
+  location.reload();
+
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+function updateDashboard(){
+
+  const user=getUser();
+
+  document.getElementById("dashName")
+    .textContent=user?.name || "Bạn";
+
+  document.getElementById("dashId")
+    .textContent=
+      "SafeQuest ID: " +
+      (user?.id || "SQ-DEMO");
+
+  document.getElementById("dashPoints")
+    .textContent=rewardPoints;
+
+  document.getElementById("dashLevel")
+    .textContent="Level " + unlockedLevels;
+
+  document.getElementById("parentQuests")
+    .textContent=completedQuests;
+
+  document.getElementById("parentPoints")
+    .textContent=rewardPoints;
+
+  document.getElementById("parentLevel")
+    .textContent="Level " + unlockedLevels;
+
+
+  const status=document.getElementById(
+    "dashStatus"
+  );
+
+  if(unlockedLevels>=3){
+
+    status.textContent=
+      "🎉 Bạn đã mở khóa toàn bộ 3 Level!";
+
+  }else{
+
+    status.textContent=
+      "⭐ Hoàn thành Level " +
+      unlockedLevels +
+      " để mở khóa Level " +
+      (unlockedLevels+1) +
+      "!";
+
+  }
+
+
+  const list=document.getElementById(
+    "badgeList"
+  );
+
+  if(!badges.length){
+
+    list.innerHTML=
+      "<span style='color:#657d80'>" +
+      "Chưa có huy hiệu — hãy hoàn thành Quest!" +
+      "</span>";
+
+  }else{
+
+    list.innerHTML=badges
+      .map(
+        b =>
+        "<span class='badge-item'>" +
+        b +
+        "</span>"
+      )
+      .join("");
+
+  }
+
+}
+
+
+/* =====================================================
+   LEVELS
+===================================================== */
+
+function updateLevels(){
+
+  const l2=document.getElementById(
+    "level2Btn"
+  );
+
+  const l3=document.getElementById(
+    "level3Btn"
+  );
+
+
+  l2.disabled=unlockedLevels<2;
+
+  l3.disabled=unlockedLevels<3;
+
+
+  l2.classList.toggle(
+    "locked",
+    unlockedLevels<2
+  );
+
+  l3.classList.toggle(
+    "locked",
+    unlockedLevels<3
+  );
+
+
+  l2.innerHTML=
+
+    unlockedLevels>=2
+
+      ?
+
+      `
+      <div class="icon">⭐⭐</div>
+      <h3>LEVEL 2</h3>
+      <p>Thử thách</p>
+      <b>▶ CHƠI NGAY</b>
+      `
+
+      :
+
+      `
+      <div class="icon">⭐⭐</div>
+      <h3>LEVEL 2</h3>
+      <p>Thử thách</p>
+      <b>🔒 HOÀN THÀNH LEVEL 1</b>
+      `;
+
+
+  l3.innerHTML=
+
+    unlockedLevels>=3
+
+      ?
+
+      `
+      <div class="icon">⭐⭐⭐</div>
+      <h3>LEVEL 3</h3>
+      <p>Siêu an toàn</p>
+      <b>▶ CHƠI NGAY</b>
+      `
+
+      :
+
+      `
+      <div class="icon">⭐⭐⭐</div>
+      <h3>LEVEL 3</h3>
+      <p>Siêu an toàn</p>
+      <b>🔒 HOÀN THÀNH LEVEL 2</b>
+      `;
+
+}
+
+
+/* =====================================================
+   ACCOUNT / ID UI
+===================================================== */
+
+function updateAccountUI(){
+
+  const user=getUser();
+
+  document.getElementById(
+    "mySafeQuestId"
+  ).textContent=
+    user?.id || "SQ-DEMO";
+
+}
+
+
+/* =====================================================
+   TOPIC
+===================================================== */
+
+function chooseTopic(topic){
+
+  selectedTopic=topic;
+
+  currentQuestion=0;
+
+  questScore=0;
+
+  questHearts=3;
+
+  renderQuestion();
+
+  document
+    .getElementById("quiz")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+}
+
+
+/* =====================================================
+   LEVEL
+===================================================== */
+
+function chooseLevel(level){
+
+  if(level>unlockedLevels){
+
+    document.getElementById(
+      "result"
+    ).textContent=
+      "🔒 Hãy hoàn thành Level " +
+      (level-1) +
+      " trước!";
+
+    document
+      .getElementById("quiz")
+      .scrollIntoView({
+        behavior:"smooth"
+      });
+
+    return;
+
+  }
+
+
+  selectedLevel=level;
+
+  currentQuestion=0;
+
+  questScore=0;
+
+  questHearts=3;
+
+  renderQuestion();
+
+  document
+    .getElementById("quiz")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+
+}
+
+
+/* =====================================================
+   RENDER QUESTION
+===================================================== */
+
+function renderQuestion(){
+
+  const data=
+    quizData[selectedTopic][currentQuestion];
+
+
+  document.getElementById(
+    "quizBadge"
+  ).textContent=
+    selectedTopic.toUpperCase() +
+    " • LEVEL " +
+    String(selectedLevel).padStart(2,"0");
+
+
+  document.getElementById(
+    "question"
+  ).textContent=data.q;
+
+
+  document.getElementById(
+    "questionScene"
+  ).textContent=
+    scenes[selectedTopic][currentQuestion];
+
+
+  document.getElementById(
+    "answerA"
+  ).textContent=data.a[0];
+
+
+  document.getElementById(
+    "answerB"
+  ).textContent=data.a[1];
+
+
+  document.getElementById(
+    "answerC"
+  ).textContent=data.a[2];
+
+
+  currentCorrect=data.correct;
+
+
+  document.getElementById(
+    "questProgress"
+  ).textContent=
+    "Câu " +
+    (currentQuestion+1) +
+    " / 3";
+
+
+  document.getElementById(
+    "questScore"
+  ).textContent=
+    "⭐ " +
+    questScore +
+    " điểm";
+
+
+  document.getElementById(
+    "questHearts"
+  ).textContent=
+    "❤️".repeat(questHearts) +
+    "🖤".repeat(3-questHearts);
+
+
+  document.getElementById(
+    "questProgressFill"
+  ).style.width=
+    (currentQuestion/3*100) +
+    "%";
+
+
+  document.getElementById(
+    "result"
+  ).textContent="";
+
+
+  document.getElementById(
+    "nextQuestionBtn"
+  ).style.display="none";
+
+
+  [
+    "answerA",
+    "answerB",
+    "answerC"
+  ].forEach(id=>{
+
+    document.getElementById(id)
+      .disabled=false;
+
+  });
+
+}
+
+
+/* =====================================================
+   ANSWER
+===================================================== */
+
+function answer(choice){
+
+  const result=
+    document.getElementById("result");
+
+
+  [
+    "answerA",
+    "answerB",
+    "answerC"
+  ].forEach(id=>{
+
+    document.getElementById(id)
+      .disabled=true;
+
+  });
+
+
+  if(choice===currentCorrect){
+
+    questScore+=10;
+
+    result.textContent=
+      "✅ Chính xác! +10 điểm ⭐";
+
+    result.style.color="#35a96f";
+
+  }else{
+
+    questHearts=
+      Math.max(0,questHearts-1);
+
+    result.textContent=
+      "❌ Chưa đúng. Hãy nhớ cách xử lý an toàn.";
+
+    result.style.color="#d34b4b";
+
+  }
+
+
+  document.getElementById(
+    "questScore"
+  ).textContent=
+    "⭐ " +
+    questScore +
+    " điểm";
+
+
+  document.getElementById(
+    "questHearts"
+  ).textContent=
+    "❤️".repeat(questHearts) +
+    "🖤".repeat(3-questHearts);
+
+
+  document.getElementById(
+    "nextQuestionBtn"
+  ).style.display="inline-block";
+
+}
+
+
+/* =====================================================
+   NEXT
+===================================================== */
+
+function nextQuestion(){
+
+  currentQuestion++;
+
+  if(currentQuestion>=3){
+
+    finishQuest();
+
+    return;
+
+  }
+
+  renderQuestion();
+
+}
+
+
+/* =====================================================
+   FINISH QUEST
+===================================================== */
+
+function finishQuest(){
+
+  rewardPoints+=questScore;
+
+  completedQuests++;
+
+
+  if(!badges.includes("🌱 Quest Starter")){
+
+    badges.push("🌱 Quest Starter");
+
+  }
+
+
+  if(
+    selectedTopic==="traffic" &&
+    !badges.includes("🚦 Traffic Hero")
+  ){
+
+    badges.push("🚦 Traffic Hero");
+
+  }
+
+
+  if(
+    selectedTopic==="home" &&
+    !badges.includes("🏠 Home Guardian")
+  ){
+
+    badges.push("🏠 Home Guardian");
+
+  }
+
+
+  if(
+    selectedTopic==="internet" &&
+    !badges.includes("💻 Cyber Smart")
+  ){
+
+    badges.push("💻 Cyber Smart");
+
+  }
+
+
+  if(
+    completedQuests>=4 &&
+    !badges.includes("🏆 Quest Master")
+  ){
+
+    badges.push("🏆 Quest Master");
+
+  }
+
+
+  if(
+    selectedLevel===1 &&
+    unlockedLevels<2
+  ){
+
+    unlockedLevels=2;
+
+  }
+
+
+  if(
+    selectedLevel===2 &&
+    unlockedLevels<3
+  ){
+
+    unlockedLevels=3;
+
+  }
+
+
+  document.getElementById(
+    "question"
+  ).textContent=
+    "🎉 Quest hoàn thành!";
+
+
+  document.getElementById(
+    "result"
+  ).textContent=
+    "🏆 Bạn nhận +" +
+    questScore +
+    " điểm! " +
+    (
+      selectedLevel<3
+      ?
+      "🔓 Level " +
+      (selectedLevel+1) +
+      " đã mở khóa!"
+      :
+      "🎉 Bạn đã hoàn thành Level 3!"
+    );
+
+
+  document.getElementById(
+    "result"
+  ).style.color="#35a96f";
+
+
+  document.getElementById(
+    "questProgress"
+  ).textContent=
+    "Hoàn thành 3 / 3";
+
+
+  document.getElementById(
+    "questProgressFill"
+  ).style.width="100%";
+
+
+  document.getElementById(
+    "nextQuestionBtn"
+  ).style.display="none";
+
+
+  saveProgress();
+
+}
+
+
+/* =====================================================
+   VOICE
+===================================================== */
+
+function speakQuestion(){
+
+  if(!("speechSynthesis" in window)){
+
+    alert(
+      "Trình duyệt chưa hỗ trợ đọc giọng nói."
+    );
+
+    return;
+
+  }
+
+
+  speechSynthesis.cancel();
+
+
+  const text=
+    document.getElementById(
+      "question"
+    ).textContent;
+
+
+  const voice=
+    new SpeechSynthesisUtterance(text);
+
+
+  voice.lang="vi-VN";
+
+  voice.rate=.9;
+
+  voice.pitch=1.05;
+
+
+  speechSynthesis.speak(voice);
+
+}
+
+
+/* =====================================================
+   REWARD
+===================================================== */
+
+function exchangeReward(type){
+
+  const cost=
+    type==="brick"
+    ? 20
+    : 50;
+
+
+  if(rewardPoints<cost){
+
+    document.getElementById(
+      "lobbyMessage"
+    ).textContent=
+      "❌ Chưa đủ điểm. Hãy hoàn thành Quest!";
+
+    return;
+
+  }
+
+
+  rewardPoints-=cost;
+
+
+  if(type==="brick"){
+
+    bricks++;
+
+  }else{
+
+    gifts++;
+
+  }
+
+
+  updateCity();
+
+  saveProgress();
+
+
+  document.getElementById(
+    "lobbyMessage"
+  ).textContent=
+    "🎉 Đổi vật phẩm thành công!";
+
+}
+
+
+/* =====================================================
+   CITY
+===================================================== */
+
+function updateCity(){
+
+  document.getElementById(
+    "rewardPoints"
+  ).textContent=rewardPoints;
+
+
+  document.getElementById(
+    "cityPoints"
+  ).textContent=rewardPoints;
+
+
+  document.getElementById(
+    "cityBricks"
+  ).textContent=bricks;
+
+
+  document.getElementById(
+    "cityGifts"
+  ).textContent=gifts;
+
+
+  document.getElementById(
+    "myBricks"
+  ).textContent=bricks;
+
+
+  document.getElementById(
+    "myCityHouse"
+  ).textContent=
+    bricks>=5
+    ? "🏠🏠"
+    : bricks>=3
+    ? "🏠🧱"
+    : "🏠";
+
+
+  document.getElementById(
+    "playerHouse"
+  ).textContent=
+    gifts>0
+    ? "🏠🎁"
+    : bricks>0
+    ? "🏠🧱"
+    : "🏠";
+
+
+  document.getElementById(
+    "minhShield"
+  ).style.width=
+    minhShield+"%";
+
+
+  document.getElementById(
+    "minhShieldText"
+  ).textContent=
+    minhShield;
+
+
+  document.getElementById(
+    "anShield"
+  ).style.width=
+    anShield+"%";
+
+
+  document.getElementById(
+    "anShieldText"
+  ).textContent=
+    anShield;
+
+}
+
+
+/* =====================================================
+   FRIENDS
+===================================================== */
+
+function copySafeQuestId(){
+
+  const user=getUser();
+
+  if(!user){
+
+    showLogin();
+
+    return;
+
+  }
+
+
+  navigator.clipboard
+    .writeText(user.id)
+    .then(()=>{
+
+      alert(
+        "📋 Đã sao chép SafeQuest ID:\n" +
+        user.id
+      );
+
+    })
+    .catch(()=>{
+
+      alert(
+        "SafeQuest ID của bạn:\n" +
+        user.id
+      );
+
+    });
+
+}
+
+
+function sendFriendRequest(){
+
+  const user=getUser();
+
+  if(!user){
+
+    showLogin();
+
+    return;
+
+  }
+
+
+  const input=
+    document.getElementById(
+      "friendIdInput"
+    );
+
+
+  const id=input.value
+    .trim()
+    .toUpperCase();
+
+
+  if(!id){
+
+    document.getElementById(
+      "friendMessageBox"
+    ).textContent=
+      "⚠️ Hãy nhập SafeQuest ID.";
+
+    return;
+
+  }
+
+
+  if(id===user.id){
+
+    document.getElementById(
+      "friendMessageBox"
+    ).textContent=
+      "⚠️ Bạn không thể gửi lời mời cho chính mình.";
+
+    return;
+
+  }
+
+
+  const message=
+    document.getElementById(
+      "friendMessage"
+    ).value;
+
+
+  document.getElementById(
+    "friendMessageBox"
+  ).textContent=
+    "🎉 Đã gửi lời mời tới " +
+    id +
+    "!\n" +
+    message +
+    " (Demo)";
+
+
+  input.value="";
+
+}
+
+
+/* =====================================================
+   FRIEND GAME
+===================================================== */
+
+function playWithFriend(name){
+
+  document.getElementById(
+    "lobbyMessage"
+  ).textContent=
+    "🎮 Đã gửi lời mời chơi Quest tới " +
+    name +
+    "! (Demo)";
+
+}
+
+
+/* =====================================================
+   BATTLE DEMO
+===================================================== */
+
+function attackHouse(name){
+
+  if(gifts<1){
+
+    document.getElementById(
+      "battleMessage"
+    ).textContent=
+      "🎁 Hãy đổi điểm lấy quà trước!";
+
+    return;
+
+  }
+
+
+  gifts--;
+
+
+  if(name==="Minh"){
+
+    minhShield=
+      Math.max(0,minhShield-20);
+
+  }else{
+
+    anShield=
+      Math.max(0,anShield-20);
+
+  }
+
+
+  updateCity();
+
+  saveProgress();
+
+
+  document.getElementById(
+    "battleMessage"
+  ).textContent=
+    "✨ Thử thách vui với nhà " +
+    name +
+    " thành công! Khiên giảm 20%. (Demo)";
+
+}
+
+
+/* =====================================================
+   PREMIUM
+===================================================== */
+
+function subscribe(){
+
+  alert(
+    "🔓 SafeQuest Premium\n\n" +
+    "49.000đ / tháng\n\n" +
+    "Đây là màn hình thanh toán demo.\n\n" +
+    "Khi triển khai thật, nút này có thể " +
+    "kết nối cổng thanh toán."
+  );
+
+}
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+updateAllUI();
+
+renderQuestion();
+
+</script>
+
+</body>
+</html>
